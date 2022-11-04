@@ -1,10 +1,10 @@
 import express from "express";
 import { protect } from "../error/errorMiddleware";
-import { causeError, sendMessage } from "../controllers";
+import { searchImages, searchVideos} from "../controllers/search";
 
 const appRoute = express.Router();
 
-appRoute.get("/", protect(sendMessage));
-appRoute.get("/error", protect(causeError));
+appRoute.post('/image-search', protect(searchImages));
+appRoute.post('/video-search', protect(searchVideos));
 
 export default appRoute;
