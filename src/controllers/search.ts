@@ -16,3 +16,7 @@ export const searchVideos = async (req: Request, res: Response) => {
   ).videos.search({ query, per_page, page });
   res.json(response);
 };
+
+export const health = async (req: Request, res: Response) => {
+  res.json({ status: 'ok' });
+};

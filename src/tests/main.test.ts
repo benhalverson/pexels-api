@@ -16,15 +16,14 @@ describe('GET /', () => {
   });
   //The tests
   it('Should return status code of 200', async () => {
-    const response = await request.get('/');
+    const response = await request.post('/image-search').send({ query: 'dog' });
+    console.log('response', response.body);
     expect(response.statusCode).toBe(200);
-    expect(response.body).toHaveProperty('message');
-    expect(response.body.message).toBe('Hello World');
   });
-  it("Should return status code of 418(I'm a teapot) and throw a custom error", async () => {
-    const response = await request.get('/error');
-    expect(response.statusCode).toBe(418);
-    expect(response.body).toHaveProperty('error');
-    expect(response.body.error).toBe('This is an error');
+
+  it('should check the health endpoint', async () => {
+    const response = await request.get('/health');
+    expect(response.statusCode).toBe(200);
+    expect(response.body.status).toBe('ok');
   });
 });
