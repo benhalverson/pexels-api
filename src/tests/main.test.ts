@@ -1,10 +1,10 @@
-import { expect, it, describe, beforeAll, afterAll } from "@jest/globals";
-import supertest from "supertest";
-import app from "../config/app";
+import { expect, it, describe, beforeAll, afterAll } from '@jest/globals';
+import supertest from 'supertest';
+import app from '../config/app';
 
 const request = supertest(app);
 
-describe("GET /", () => {
+describe('GET /', () => {
   //Opens the server before all the tests
   let server: any;
   beforeAll(async () => {
@@ -15,16 +15,16 @@ describe("GET /", () => {
     await server.close();
   });
   //The tests
-  it("Should return status code of 200", async () => {
-    const response = await request.get("/");
+  it('Should return status code of 200', async () => {
+    const response = await request.get('/');
     expect(response.statusCode).toBe(200);
-    expect(response.body).toHaveProperty("message");
-    expect(response.body.message).toBe("Hello World");
+    expect(response.body).toHaveProperty('message');
+    expect(response.body.message).toBe('Hello World');
   });
   it("Should return status code of 418(I'm a teapot) and throw a custom error", async () => {
-    const response = await request.get("/error");
+    const response = await request.get('/error');
     expect(response.statusCode).toBe(418);
-    expect(response.body).toHaveProperty("error");
-    expect(response.body.error).toBe("This is an error");
+    expect(response.body).toHaveProperty('error');
+    expect(response.body.error).toBe('This is an error');
   });
 });

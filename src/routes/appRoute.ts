@@ -1,6 +1,6 @@
-import express from "express";
-import { protect } from "../error/errorMiddleware";
-import { searchImages, searchVideos} from "../controllers/search";
+import express from 'express';
+import { protect } from '../error/errorMiddleware';
+import { searchImages, searchVideos } from '../controllers/search';
 
 const appRoute = express.Router();
 

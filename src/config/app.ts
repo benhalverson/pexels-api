@@ -1,11 +1,11 @@
-import express, { Application } from "express";
-import morgan from "morgan";
-import cors from "cors";
-import helmet from "helmet";
+import express, { Application } from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
+import helmet from 'helmet';
 
-import appRoute from "../routes/appRoute";
+import appRoute from '../routes/appRoute';
 
-import { errorMiddleware } from "../error/errorMiddleware";
+import { errorMiddleware } from '../error/errorMiddleware';
 
 const app: Application = express();
 
@@ -13,9 +13,9 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 
-app.use("/", appRoute);
+app.use('/', appRoute);
 
 app.use(errorMiddleware);
 
