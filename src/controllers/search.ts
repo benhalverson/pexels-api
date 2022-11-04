@@ -1,22 +1,14 @@
 import { Request, Response } from 'express';
-import { createClient } from 'pexels';
+import client from '../config/apiKey';
 
 export const searchImages = async (req: Request, res: Response) => {
   const { query, per_page, page } = req.body;
-  const response = await createClient(
-    `${process.env.PEXELS_API_KEY}`
-  ).photos.search({ query, per_page, page });
-  res.json(response);
+  const results = await client.photos.search({ query, per_page, page });
+  res.status(200).json(results);
 };
 
 export const searchVideos = async (req: Request, res: Response) => {
   const { query, per_page, page } = req.body;
-  const response = await createClient(
-    `${process.env.PEXELS_API_KEY}`
-  ).videos.search({ query, per_page, page });
-  res.json(response);
-};
-
-export const health = async (req: Request, res: Response) => {
-  res.json({ status: 'ok' });
+  const results = await client.videos.search({ query, per_page, page });
+  res.status(200).json(results);
 };

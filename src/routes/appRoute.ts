@@ -1,11 +1,12 @@
 import express from 'express';
 import { protect } from '../error/errorMiddleware';
-import { searchImages, searchVideos, health } from '../controllers/search';
+import { checkHealth } from '../controllers';
+import { searchImages, searchVideos } from '../controllers/search';
 
 const appRoute = express.Router();
 
+appRoute.get('/health', checkHealth);
 appRoute.post('/image-search', protect(searchImages));
 appRoute.post('/video-search', protect(searchVideos));
-appRoute.get('/health', health);
 
 export default appRoute;
