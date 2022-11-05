@@ -26,7 +26,7 @@ describe('Testing Users', () => {
         page: 1,
       });
       expect(res.statusCode).toBe(200);
-      expect(res.body.photos).toBeDefined();
+      expect(typeof res.body.photos).toBe('object');
     });
   });
 });
