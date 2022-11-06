@@ -4,6 +4,8 @@ import cors from 'cors';
 import helmet from 'helmet';
 
 import appRoute from '../routes/appRoute';
+import searchRoute from '../routes/searchRoute';
+import aiRoute from '../routes/aiRoute';
 
 import { errorMiddleware } from '../error/errorMiddleware';
 
@@ -16,6 +18,8 @@ app.use(cors());
 app.use(morgan('dev'));
 
 app.use('/', appRoute);
+app.use('/search', searchRoute);
+app.use('/ai', aiRoute);
 
 app.use(errorMiddleware);
 
