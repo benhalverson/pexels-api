@@ -17,6 +17,5 @@ export const errorMiddleware = (
   next: NextFunction
 ) => {
   const error = handleError(err);
-  console.log(error.message);
   res.status(error.status).json({ error: error.message });
 };

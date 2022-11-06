@@ -1,12 +1,6 @@
-import { Configuration, OpenAIApi } from 'openai';
 import { Request, Response } from 'express';
 import fs from 'fs';
-
-const config = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-const openai = new OpenAIApi(config);
+import { openai } from '../config/apiKey';
 
 export const imageVariation = async (req: Request, res: Response) => {
   try {
@@ -14,7 +8,7 @@ export const imageVariation = async (req: Request, res: Response) => {
     const response = await openai.createImageVariation({
       img: img,
       n: 1,
-      size: '1024x1024',
+      size: 1024,
     });
     console.log('response', response);
     res.json(response);
@@ -25,22 +19,12 @@ export const imageVariation = async (req: Request, res: Response) => {
 
 export const imagePrompt = async (req: Request, res: Response) => {
   const { text } = req.body;
-  try {
-    const response = await openai.createImage(
-      {
-        prompt: text,
-        n: 1,
-        size: '1024x1024',
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-    console.log('response', response);
-    res.json(response);
-  } catch (error) {
-    console.log('error', error);
-  }
+  const response = await openai.createCompletion({
+    model: "text-davinci-002",
+    prompt: text,
+    max_tokens: 6,
+    temperature: 0,
+  });
+  
+  console.log('response', response.data);
 };

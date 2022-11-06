@@ -9,7 +9,7 @@ const appRoute = express.Router();
 appRoute.get('/health', checkHealth);
 appRoute.post('/image-search', protect(searchImages));
 appRoute.post('/video-search', protect(searchVideos));
-appRoute.get('/image-variation', imageVariation);
-appRoute.post('/image-prompt', imagePrompt);
+appRoute.get('/ai-image', protect(imageVariation));
+appRoute.post('/image-prompt', protect(imagePrompt));
 
 export default appRoute;

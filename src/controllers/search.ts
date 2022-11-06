@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import client from '../config/apiKey';
+import { client } from '../config/apiKey';
 
 export const searchImages = async (req: Request, res: Response) => {
   const { query, per_page, page } = req.body;

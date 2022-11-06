@@ -1,6 +1,7 @@
 import CError from './CError';
 
 const handleError = (err: unknown) => {
+  console.log('err', err);
   if (err instanceof CError) return err;
   if (err instanceof Error) return new CError(err.message);
   if (typeof err === 'string') return new CError(err);
